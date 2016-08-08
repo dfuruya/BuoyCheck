@@ -2,7 +2,13 @@ const Favorites = require('../models/favoritesModel');
 
 module.exports = {
   allBuoys: (req, res, next) => {
-    // TODO: fetch all favorite buoys from db
+    Favorites.find({})
+    .then(favorites => {
+      res.json(favorites);
+    })
+    .catch(err => {
+      next(err);
+    });
   },
 
   addBuoy: (req, res, next) => {
