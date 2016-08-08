@@ -6,13 +6,16 @@ module.exports = {
     .then(favorites => {
       res.json(favorites);
     })
-    .catch(err => {
-      next(err);
-    });
+    .catch(err => { next(err) });
   },
 
   addBuoy: (req, res, next) => {
-    // TODO: add a buoy to db
+    Favorites.create(req.body)
+    .then(() => {
+      console.log('Added buoy to favorites: ', req.body.title);
+      res.end();
+    })
+    .catch(err => { next(err) });
   },
 
   deleteBuoy: (req, res, next) => {
