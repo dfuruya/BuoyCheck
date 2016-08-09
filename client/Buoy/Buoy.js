@@ -4,9 +4,9 @@ const Buoy = props => {
   return (
     <div>
       {props.buoys.map(buoy =>
-        <li key={buoy.title} onClick={() => props.buoyClick(buoy)}>
+        <button type="button" className="list-group-item" key={buoy.title} onClick={() => props.buoyClick(buoy)}>
           {buoy.title}
-        </li>
+        </button>
       )}
     </div>
   );

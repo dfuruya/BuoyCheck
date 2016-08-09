@@ -36,12 +36,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Welcome to the Buoy Checker!</h1>
-        <ul role="nav">
-          <li><Link to="/main">Main</Link></li>
-          <li><Link to="/favorites">Favorites</Link></li>
-        </ul>
+      <div className="col-lg-6 container-fluid">
+        <div className="nav">
+          <h1 className="jumbotron">Welcome to the Buoy Checker!</h1>
+          <ul className="nav navbar-default" role="nav">
+            <li><Link to="/main">Main</Link></li>
+            <li><Link to="/favorites">Favorites</Link></li>
+          </ul>
+        </div>
         {this.props.children}
       </div>
     );

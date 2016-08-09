@@ -39,12 +39,12 @@ class Favorites extends React.Component {
   render() {
     return (
       <div>
-        <h2>Favorites</h2>
-        <h3>(Click stations below to remove from Favorites:)</h3>
+        <h2>Favorites Page</h2>
+        <h3>Click stations below to remove from Favorites:</h3>
           {this.context.fetchError ? `Sorry, we couldn't fetch your list of favorited buoys! :(` :
-          <ul>
+          <div className="list-group">
             <Buoy buoys={this.context.favoritesList} buoyClick={buoy => this.handleFavoriteClick(buoy)} />
-          </ul>
+          </div>
           }
       </div>
     );

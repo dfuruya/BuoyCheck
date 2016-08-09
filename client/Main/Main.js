@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Buoy from '../Buoy/Buoy';
+import { Button } from 'react-bootstrap';
 
 class Main extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class Main extends React.Component {
       if (Array.isArray(results.data)) {
         this.context.setFavoritesList(results.data);
       } else {
-        console.log('Buoy already exists');
+        console.log('Buoy already exists', buoy.title);
       }
     })
     .catch(error => {
@@ -47,11 +48,11 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h2>Main</h2>
+        <h2>Main Page</h2>
         <h3>Click to pull a fresh RSS feed:</h3>
-        <button onClick={this.fetchAllBuoys}>Refresh</button>
+        <Button className="btn btn-primary" onClick={this.fetchAllBuoys}>Refresh</Button>
         <h3>Click on a station below to add to Favorites:</h3>
-        <ul>
+        <ul className="list-group">
           <Buoy buoys={this.context.buoysList} buoyClick={buoy => this.handleBuoyClick(buoy)} />
         </ul>
       </div>
