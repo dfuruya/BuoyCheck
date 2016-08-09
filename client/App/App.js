@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,7 +8,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>React in ES6 is working!</div>
+      <div>
+        <h1>React in ES6 is working!</h1>
+        <ul role="nav">
+          <li><Link to="/main">Main</Link></li>
+          <li><Link to="/favorites">Favorites</Link></li>
+        </ul>
+        {this.props.children}
+      </div>
     );
   }
 }
