@@ -39,6 +39,10 @@ module.exports = {
   },
 
   getBuoys: (req, res, next) => {
-    // TODO: grab all buoys from db
+    Buoys.find({})
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => next(err));
   }
 };

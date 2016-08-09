@@ -10,6 +10,6 @@ module.exports = function(app) {
   // app.delete('/favorites', favoritesController.deleteFavorite);
 
   // routing logic for buoy list on NDBC feed
-  app.get('/main', buoysController.fetchBuoys);
-
+  app.get('/main', buoysController.getBuoys);
+  app.put('/main', buoysController.fetchBuoys);
 };
