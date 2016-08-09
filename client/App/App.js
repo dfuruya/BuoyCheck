@@ -6,7 +6,7 @@ class App extends React.Component {
     super();
     this.state = {
       favoritesList: [],
-      buoyList: [],
+      buoysList: [],
       fetchError: false,
     };
   }
@@ -14,10 +14,10 @@ class App extends React.Component {
   getChildContext() {
     return {
       favoritesList: this.state.favoritesList,
-      buoyList: this.state.buoyList,
+      buoysList: this.state.buoysList,
       fetchError: this.state.fetchError,
       setFavoritesList: this.setFavoritesList.bind(this),
-      setBuoyList: this.setBuoyList.bind(this),
+      setBuoysList: this.setBuoysList.bind(this),
       setFetchError: this.setFetchError.bind(this),
     };
   }
@@ -26,8 +26,8 @@ class App extends React.Component {
     this.setState({favoritesList: list});
   }
 
-  setBuoyList(list) {
-    this.setState({buoyList: list});
+  setBuoysList(list) {
+    this.setState({buoysList: list});
   }
 
   setFetchError(bool) {
@@ -50,10 +50,10 @@ class App extends React.Component {
 
 App.childContextTypes = {
   favoritesList: React.PropTypes.any,
-  buoyList: React.PropTypes.any,
+  buoysList: React.PropTypes.any,
   fetchError: React.PropTypes.any,
   setFavoritesList: React.PropTypes.any,
-  setBuoyList: React.PropTypes.any,
+  setBuoysList: React.PropTypes.any,
   setFetchError: React.PropTypes.any,
 };
 
