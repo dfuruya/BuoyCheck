@@ -19,6 +19,16 @@ module.exports = {
   },
 
   deleteFavorite: (req, res, next) => {
-    // TODO: delete buoy from favorites
+    Favorites.findOneAndRemove({
+      _id: req.params.id,
+    })
+    .then((removed) => {
+      console.log('Removed buoy from favorites: ', removed.title);
+      Favorites.find({})
+      .then(results => {
+        res.json(results);
+      })
+      .catch(err => next(err));
+    });
   },
 };

@@ -7,7 +7,7 @@ module.exports = function(app) {
   // routing logic for favorite buoys
   app.get('/favorites', favoritesController.allFavorites);
   app.post('/favorites', favoritesController.addFavorite);
-  // app.delete('/favorites', favoritesController.deleteFavorite);
+  app.delete('/favorites/:id', favoritesController.deleteFavorite);
 
   // routing logic for buoy list on NDBC feed
   app.get('/main', buoysController.getBuoys);
