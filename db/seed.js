@@ -16,7 +16,7 @@ const startDB = callback => {
 // drop old data
 const clearDB = callback => {
   mongoose.connection.db.dropDatabase(() => {
-    console.log('...Dropped database "buoy_dev"...');
+    console.log('...Dropped database...');
     callback();
   });
 };
