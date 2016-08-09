@@ -16,7 +16,7 @@ class Main extends React.Component {
   fetchAllBuoys() {
     axios.get('/main')
     .then(response => {
-      console.log('refreshed: ', response);
+      console.log('Fetching from RSS feed: ', response.data);
       this.context.setBuoysList(response.data);
       // this.context.setFetchError(false);
     })
@@ -32,6 +32,13 @@ class Main extends React.Component {
       link: buoy.link,
       description: buoy.description,
     })
+    .then(results => {
+      if (Array.isArray(results.data)) {
+        this.context.setFavoritesList(results.data);
+      } else {
+        console.log('Buoy already exists');
+      }
+    })
     .catch(error => {
       console.log(error);
     });
@@ -41,7 +48,9 @@ class Main extends React.Component {
     return (
       <div>
         <h2>Main</h2>
+        <h3>Click to pull a fresh RSS feed:</h3>
         <button onClick={this.fetchAllBuoys}>Refresh</button>
+        <h3>Click on a station below to add to Favorites:</h3>
         <ul>
           <Buoy buoys={this.context.buoysList} buoyClick={buoy => this.handleBuoyClick(buoy)} />
         </ul>
@@ -51,9 +60,9 @@ class Main extends React.Component {
 }
 
 Main.contextTypes = {
-  favoritesList: React.PropTypes.any,
   buoysList: React.PropTypes.any,
   // fetchError: React.PropTypes.any,
+  setFavoritesList: React.PropTypes.any,
   setBuoysList: React.PropTypes.any,
   setFetchError: React.PropTypes.any,
 };

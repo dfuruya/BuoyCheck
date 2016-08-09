@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Buoy = (props, context) => {
+const Buoy = props => {
   return (
     <div>
       {props.buoys.map(buoy =>

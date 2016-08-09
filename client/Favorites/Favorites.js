@@ -4,7 +4,7 @@ import Buoy from '../Buoy/Buoy';
 
 class Favorites extends React.Component {
   constructor(props) {
-    super(props);
+    super();
   }
 
   componentDidMount() {
@@ -16,8 +16,12 @@ class Favorites extends React.Component {
   fetchAllFavorites() {
     axios.get('/favorites')
     .then(response => {
-      this.context.setFavoritesList(response.data);
-      this.context.setFetchError(false);
+      if (Array.isArray(response.data)) {
+        this.context.setFavoritesList(response.data);
+        this.context.setFetchError(false);
+      } else {
+        console.log('Buoy already exists in favorites');
+      }
     })
     .catch(err => {
       this.context.setFetchError(true);
@@ -36,6 +40,7 @@ class Favorites extends React.Component {
     return (
       <div>
         <h2>Favorites</h2>
+        <h3>(Click stations below to remove from Favorites:)</h3>
           {this.context.fetchError ? `Sorry, we couldn't fetch your list of favorited buoys! :(` :
           <ul>
             <Buoy buoys={this.context.favoritesList} buoyClick={buoy => this.handleFavoriteClick(buoy)} />

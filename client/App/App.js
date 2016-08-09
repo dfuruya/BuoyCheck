@@ -37,7 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Buoy Checker</h1>
+        <h1>Welcome to the Buoy Checker!</h1>
         <ul role="nav">
           <li><Link to="/main">Main</Link></li>
           <li><Link to="/favorites">Favorites</Link></li>
