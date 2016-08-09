@@ -38,7 +38,7 @@ class Favorites extends React.Component {
         <h2>Favorites</h2>
           {this.context.fetchError ? `Sorry, we couldn't fetch your list of favorited buoys! :(` :
           <ul>
-            <Buoy buoyClick={buoy => this.handleFavoriteClick(buoy)} />
+            <Buoy buoys={this.context.favoritesList} buoyClick={buoy => this.handleFavoriteClick(buoy)} />
           </ul>
           }
       </div>
