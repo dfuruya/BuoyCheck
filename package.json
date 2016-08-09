@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "seed": "node db/seed.js",
     "start": "NODE_ENV=development nodemon server/server.js"
   },
   "repository": {
@@ -19,8 +20,13 @@
   },
   "homepage": "https://github.com/dfuruya/BuoyCheck#readme",
   "dependencies": {
+    "axios": "^0.13.1",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "mongoose": "^4.5.8"
+    "mongoose": "^4.5.8",
+    "node-feedparser": "^1.0.1"
+  },
+  "devDependencies": {
+    "async": "^2.0.1"
   }
 }
