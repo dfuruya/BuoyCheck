@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Buoy from '../Buoy/Buoy';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 
 class Main extends React.Component {
   constructor(props) {
@@ -57,9 +57,9 @@ class Main extends React.Component {
     return (
       <div>
         <h2>Main Page</h2>
-        <Button
+        <button
           className="btn btn-primary"
-          onClick={this.fetchAllBuoys}>Refresh RSS Feed</Button>
+          onClick={this.fetchAllBuoys}>Refresh RSS Feed</button>
         <h3>Click on a station below to add to Favorites:</h3>
         {this.context.buoysList.length === 0 ? <img src="./spinner.gif" /> : null}
         <ul className="list-group">
