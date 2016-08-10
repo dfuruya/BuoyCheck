@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import Buoy from '../Buoy/Buoy';
+import FavBuoy from '../FavBuoy/FavBuoy';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -23,9 +23,7 @@ class Favorites extends React.Component {
         console.log('Buoy already exists in favorites');
       }
     })
-    .catch(err => {
-      this.context.setFetchError(true);
-    });
+    .catch(err => this.context.setFetchError(true));
   }
 
   handleFavoriteClick(buoy) {
@@ -41,10 +39,16 @@ class Favorites extends React.Component {
       <div>
         <h2>Favorites Page</h2>
         <h3>Click stations below to remove from Favorites:</h3>
-          {this.context.fetchError ? `Sorry, we couldn't fetch your list of favorited buoys! :(` :
-          <div className="list-group">
-            <Buoy buoys={this.context.favoritesList} buoyClick={buoy => this.handleFavoriteClick(buoy)} />
-          </div>
+          {this.context.favoritesList.length === 0 ?
+            `Looks like your list is empty. Let's go to the Main page and check out some awesome buoys, shall we?` :
+            null}
+          {this.context.fetchError ?
+            `Sorry, we couldn't fetch your list of favorited buoys! :(` :
+            <div className="list-group">
+              <FavBuoy
+                buoys={this.context.favoritesList}
+                buoyClick={buoy => this.handleFavoriteClick(buoy)} />
+            </div>
           }
       </div>
     );

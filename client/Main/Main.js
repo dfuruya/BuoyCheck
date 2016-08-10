@@ -9,9 +9,17 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    if (this.context.buoysList.length === 0) {
-      this.fetchAllBuoys();
-    }
+    if (this.context.buoysList.length === 0) this.fetchAllBuoys();
+  }
+
+  getAllBuoys() {
+    axios.put('/main')
+    .then(response => {
+      this.context.setBuoysList(response);
+    })
+    .catch(err => {
+      console.log('Unable to refresh live buoy list: ', err);
+    });
   }
 
   fetchAllBuoys() {
@@ -49,11 +57,15 @@ class Main extends React.Component {
     return (
       <div>
         <h2>Main Page</h2>
-        <h3>Click to pull a fresh RSS feed:</h3>
-        <Button className="btn btn-primary" onClick={this.fetchAllBuoys}>Refresh</Button>
+        <Button
+          className="btn btn-primary"
+          onClick={this.fetchAllBuoys}>Refresh RSS Feed</Button>
         <h3>Click on a station below to add to Favorites:</h3>
+        {this.context.buoysList.length === 0 ? <img src="./spinner.gif" /> : null}
         <ul className="list-group">
-          <Buoy buoys={this.context.buoysList} buoyClick={buoy => this.handleBuoyClick(buoy)} />
+          <Buoy
+            buoys={this.context.buoysList}
+            buoyClick={buoy => this.handleBuoyClick(buoy)} />
         </ul>
       </div>
     );

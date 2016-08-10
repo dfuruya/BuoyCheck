@@ -4,7 +4,7 @@ const BuoysSchema = mongoose.Schema({
   title: String,
   date: String,
   link: String,
-  description: String,
+  description: [ String ],
 });
 
 module.exports = mongoose.model('Buoys', BuoysSchema);

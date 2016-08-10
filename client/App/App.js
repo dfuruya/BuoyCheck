@@ -38,7 +38,7 @@ class App extends React.Component {
     return (
       <div className="col-lg-6 container-fluid">
         <div className="nav">
-          <h1 className="jumbotron">Welcome to the Buoy Checker!</h1>
+          <h1 className="jumbotron">Mega Buoy Checker 5000</h1>
           <ul className="nav navbar-default" role="nav">
             <li><Link to="/main">Main</Link></li>
             <li><Link to="/favorites">Favorites</Link></li>
