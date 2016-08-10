@@ -1,6 +1,7 @@
 const Favorites = require('../models/favoritesModel');
 
 module.exports = {
+  // Grab all favorited buoys
   allFavorites: (req, res, next) => {
     Favorites.find({})
     .then(favorites => {
@@ -9,6 +10,7 @@ module.exports = {
     .catch(err => next(err) );
   },
 
+  // Add a buoy to the Favorites if not exists
   addFavorite: (req, res, next) => {
     Favorites.where({
       title: req.body.title,
@@ -27,6 +29,7 @@ module.exports = {
     });
   },
 
+  // Remove buoy from Favorites list
   deleteFavorite: (req, res, next) => {
     Favorites.findOneAndRemove({
       _id: req.params.id,

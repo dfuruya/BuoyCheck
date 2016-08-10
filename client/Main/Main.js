@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Buoy from '../Buoy/Buoy';
+import { Button } from 'react-bootstrap';
 
 class Main extends React.Component {
   constructor(props) {
@@ -8,9 +9,17 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    if (this.context.buoysList.length === 0) {
-      this.fetchAllBuoys();
-    }
+    if (this.context.buoysList.length === 0) this.fetchAllBuoys();
+  }
+
+  getAllBuoys() {
+    axios.put('/main')
+    .then(response => {
+      this.context.setBuoysList(response);
+    })
+    .catch(err => {
+      console.log('Unable to refresh live buoy list: ', err);
+    });
   }
 
   fetchAllBuoys() {
@@ -36,7 +45,7 @@ class Main extends React.Component {
       if (Array.isArray(results.data)) {
         this.context.setFavoritesList(results.data);
       } else {
-        console.log('Buoy already exists');
+        console.log('Buoy already exists', buoy.title);
       }
     })
     .catch(error => {
@@ -47,12 +56,16 @@ class Main extends React.Component {
   render() {
     return (
       <div>
-        <h2>Main</h2>
-        <h3>Click to pull a fresh RSS feed:</h3>
-        <button onClick={this.fetchAllBuoys}>Refresh</button>
+        <h2>Main Page</h2>
+        <Button
+          className="btn btn-primary"
+          onClick={this.fetchAllBuoys}>Refresh RSS Feed</Button>
         <h3>Click on a station below to add to Favorites:</h3>
-        <ul>
-          <Buoy buoys={this.context.buoysList} buoyClick={buoy => this.handleBuoyClick(buoy)} />
+        {this.context.buoysList.length === 0 ? <img src="./spinner.gif" /> : null}
+        <ul className="list-group">
+          <Buoy
+            buoys={this.context.buoysList}
+            buoyClick={buoy => this.handleBuoyClick(buoy)} />
         </ul>
       </div>
     );
