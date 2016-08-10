@@ -2,6 +2,8 @@
 
 A demo application that fetches RSS feeds of buoy stations within 100 nautical miles of lat=40N and long=73W. You can also store all of your favorite stations by clicking on them!
 
+![BuoyCheck preview](http://i.imgur.com/dpjU4jL.gif)
+
 ## Table of Contents
 
 1. [Requirements](#requirements)
